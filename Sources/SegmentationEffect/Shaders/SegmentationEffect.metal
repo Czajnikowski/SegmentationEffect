@@ -39,13 +39,17 @@ float wedge2D(float2 v, float2 w) {
   return v.y*w.x - v.x*w.y;
 }
 
-float2 bilinearInterpolate(float2 p, float2 a, float2 b, float2 c, float2 d) {
+struct quadrilateral {
+  float2 a, b, c, d;
+};
+
+float2 bilinearInterpolate(float2 p, quadrilateral q) {
   float2 uv;
   
-  float2 e = d-c;
-  float2 f = b-c;
-  float2 g = c-d+a-b;
-  float2 h = p-c;
+  float2 e = q.d-q.c;
+  float2 f = q.b-q.c;
+  float2 g = q.c-q.d+q.a-q.b;
+  float2 h = p-q.c;
   
   float A = wedge2D(g, f);
   float B = wedge2D(e, f) + wedge2D(h, g);
@@ -109,10 +113,12 @@ float2 transform(float2 p, float3x3 matrix) {
 }
 
 float2 segment(
-  float2 currentInterpolation,
+  float2 position,
+  quadrilateral q,
   float currentYOffset,
   float currentYScale
 ) {
+  float2 currentInterpolation = bilinearInterpolate(position, q);
   float3x3 move = translateY(currentYOffset) * to3D(scaleY(currentYScale));
   return clamp(
     fract(move * float3(currentInterpolation, 1)).xy * insideUnitSquare(currentInterpolation),
@@ -134,12 +140,11 @@ constant int countOfFloatsPerSegment = 5;
   // (0, 0) - bottom-left, (1, 1) - top-right
   float3x3 normalize = sharedNormalize * to3D(scale(1 / boundingRect.zw));
   position = transform(position, normalize);
-
-  float2 a = float2(1, 0);
-  float2 b = 0;
-  float2 c;
-  float2 d;
   
+  quadrilateral currentQuadrilateral = quadrilateral {
+    .a = float2(1, 0),
+    .b = 0,
+  };
   float currentYScale = 1;
   float currentYOffset = 0;
   
@@ -160,14 +165,17 @@ constant int countOfFloatsPerSegment = 5;
     );
     currentYScale = segmentFloats[intexOfFirstFloatInSegment + 4];
     
-    c = b;
-    d = a;
-    a = transform(stepPointA, normalize);
-    b = transform(stepPointB, normalize);
+    currentQuadrilateral = quadrilateral {
+      .a = transform(stepPointA, normalize),
+      .b = transform(stepPointB, normalize),
+      .c = currentQuadrilateral.b,
+      .d = currentQuadrilateral.a,
+    };
     
-    if(result.x * result.y == 0) {
+    if(result.x + result.y == 0) {
       result = segment(
-        bilinearInterpolate(position, a, b, c, d),
+        position,
+        currentQuadrilateral,
         currentYOffset,
         currentYScale
       );
@@ -176,14 +184,17 @@ constant int countOfFloatsPerSegment = 5;
     currentYOffset += currentYScale;
   }
 
-  c = b;
-  d = a;
-  a = 1;
-  b = float2(0, 1);
+  currentQuadrilateral = {
+    .a = 1,
+    .b = float2(0, 1),
+    .c = currentQuadrilateral.b,
+    .d = currentQuadrilateral.a,
+  };
   
-  if(result.x * result.y == 0) {
+  if(result.x + result.y == 0) {
     result = segment(
-      bilinearInterpolate(position, a, b, c, d),
+      position,
+      currentQuadrilateral,
       currentYOffset,
       currentYScale
     );

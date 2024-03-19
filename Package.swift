@@ -4,20 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "GeometryEffect",
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "GeometryEffect",
-            targets: ["GeometryEffect"]),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "GeometryEffect"),
-        .testTarget(
-            name: "GeometryEffectTests",
-            dependencies: ["GeometryEffect"]),
-    ]
+  name: "GeometryEffect",
+  platforms: [
+    .iOS(.v17),
+    .macOS(.v14),
+  ],
+  products: [
+    .library(
+      name: "GeometryEffect",
+      targets: ["GeometryEffect"]
+    ),
+  ],
+  targets: [
+    .target(
+      name: "GeometryEffect",
+      resources: [.process("Shaders/GeometryEffect.metal")]
+    ),
+  ]
 )

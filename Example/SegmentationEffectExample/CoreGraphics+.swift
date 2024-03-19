@@ -1,6 +1,6 @@
 //
 //  CoreGraphics+.swift
-//  GeometryEffectExample
+//  SegmentationEffectExample
 //
 //  Created by Maciek Czarnik on 18/03/2024.
 //

@@ -1,12 +1,12 @@
 //
 //  SegmentEditingView.swift
-//  GeometryEffectExample
+//  SegmentationEffectExample
 //
 //  Created by Maciek Czarnik on 13/03/2024.
 //
 
 import SwiftUI
-import GeometryEffect
+import SegmentationEffect
 
 struct SegmentEditingView: View {
   private enum Constant {

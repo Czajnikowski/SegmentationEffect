@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AEC196232B97447B00028971"
-               BuildableName = "GeometryEffectExample.app"
-               BlueprintName = "GeometryEffectExample"
-               ReferencedContainer = "container:GeometryEffectExample.xcodeproj">
+               BuildableName = "SegmentationEffectExample.app"
+               BlueprintName = "SegmentationEffectExample"
+               ReferencedContainer = "container:SegmentationEffectExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AEC196232B97447B00028971"
-            BuildableName = "GeometryEffectExample.app"
-            BlueprintName = "GeometryEffectExample"
-            ReferencedContainer = "container:GeometryEffectExample.xcodeproj">
+            BuildableName = "SegmentationEffectExample.app"
+            BlueprintName = "SegmentationEffectExample"
+            ReferencedContainer = "container:SegmentationEffectExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AEC196232B97447B00028971"
-            BuildableName = "GeometryEffectExample.app"
-            BlueprintName = "GeometryEffectExample"
-            ReferencedContainer = "container:GeometryEffectExample.xcodeproj">
+            BuildableName = "SegmentationEffectExample.app"
+            BlueprintName = "SegmentationEffectExample"
+            ReferencedContainer = "container:SegmentationEffectExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

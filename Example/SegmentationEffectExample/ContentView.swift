@@ -1,12 +1,12 @@
 //
 //  ContentView.swift
-//  GeometryEffectExample
+//  SegmentationEffectExample
 //
 //  Created by Maciek Czarnik on 05/03/2024.
 //
 
 import SwiftUI
-import GeometryEffect
+import SegmentationEffect
 import IdentifiedCollections
 
 struct ContentView: View {
@@ -45,7 +45,7 @@ struct ContentView: View {
           .opacity(0.6)
           .opacity(editingUIOpacity)
         }
-        .geometryEffect(
+        .segmentationEffect(
           segments: segments.map(\.value),
           verticalOffset: verticalOffset(timelineContext)
         )

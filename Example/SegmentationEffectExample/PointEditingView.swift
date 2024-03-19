@@ -1,6 +1,6 @@
 //
 //  PointEditingView.swift
-//  GeometryEffectExample
+//  SegmentationEffectExample
 //
 //  Created by Maciek Czarnik on 14/03/2024.
 //

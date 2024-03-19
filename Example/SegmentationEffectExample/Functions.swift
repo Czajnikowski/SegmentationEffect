@@ -1,6 +1,6 @@
 //
 //  Functions.swift
-//  GeometryEffectExample
+//  SegmentationEffectExample
 //
 //  Created by Maciek Czarnik on 19/03/2024.
 //

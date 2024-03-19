@@ -29,14 +29,14 @@ public enum Step {
 }
 
 extension View {
-  public func geometryEffect(
+  public func segmentationEffect(
     segments: [Segment],
     verticalOffset: Float = 0
   ) -> some View {
     compositingGroup()
       .distortionEffect(
         .init(
-          function: .init(library: .bundle(.module), name: "geometryEffect"),
+          function: .init(library: .bundle(.module), name: "segmentationEffect"),
           arguments: [
             .boundingRect,
             .floatArray(segments.flatMap(\.floatArray)),
@@ -45,11 +45,5 @@ extension View {
         ),
         maxSampleOffset: .zero
       )
-  }
-}
-
-extension SIMD2 {
-  var xy: [Scalar] {
-    [x, y]
   }
 }

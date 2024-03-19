@@ -1,6 +1,6 @@
 //
-//  GeometryEffect.metal
-//  GeometryEffectExample
+//  SegmentationEffect.metal
+//  SegmentationEffectExample
 //
 //  Created by Maciek Czarnik on 05/03/2024.
 //
@@ -124,7 +124,7 @@ float2 segment(
 constant float3x3 sharedNormalize = translateY(1) * to3D(scaleY(-1));
 constant int countOfFloatsPerSegment = 5;
 
-[[ stitchable ]] float2 geometryEffect(
+[[ stitchable ]] float2 segmentationEffect(
   float2 position,
   float4 boundingRect,
   device const float *segmentFloats,

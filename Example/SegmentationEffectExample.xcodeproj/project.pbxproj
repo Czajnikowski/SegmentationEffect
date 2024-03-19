@@ -16,7 +16,7 @@
 		AE67E2C02BA9BAE100056D7C /* SegmentationEffectExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE67E2B72BA9BAE100056D7C /* SegmentationEffectExampleApp.swift */; };
 		AE67E2C12BA9BAE100056D7C /* PointEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE67E2B82BA9BAE100056D7C /* PointEditingView.swift */; };
 		AE67E2C22BA9BAE100056D7C /* SegmentEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE67E2B92BA9BAE100056D7C /* SegmentEditingView.swift */; };
-		AE67E2C42BA9BB6300056D7C /* SegmentationEffect in Frameworks */ = {isa = PBXBuildFile; productRef = AE67E2C32BA9BB6300056D7C /* SegmentationEffect */; };
+		AE67E2CB2BA9C03B00056D7C /* SegmentationEffect in Frameworks */ = {isa = PBXBuildFile; productRef = AE67E2CA2BA9C03B00056D7C /* SegmentationEffect */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +29,8 @@
 		AE67E2B72BA9BAE100056D7C /* SegmentationEffectExampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentationEffectExampleApp.swift; sourceTree = "<group>"; };
 		AE67E2B82BA9BAE100056D7C /* PointEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointEditingView.swift; sourceTree = "<group>"; };
 		AE67E2B92BA9BAE100056D7C /* SegmentEditingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentEditingView.swift; sourceTree = "<group>"; };
+		AE67E2C92BA9BFF900056D7C /* SegmentationEffect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SegmentationEffect; path = ..; sourceTree = "<group>"; };
 		AEC196242B97447B00028971 /* SegmentationEffectExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SegmentationEffectExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AEC196382B97469C00028971 /* GeometryEffect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GeometryEffect; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +39,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE5CD8AE2BA232E20096E5B1 /* IdentifiedCollections in Frameworks */,
-				AE67E2C42BA9BB6300056D7C /* SegmentationEffect in Frameworks */,
+				AE67E2CB2BA9C03B00056D7C /* SegmentationEffect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +73,7 @@
 		AEC1961B2B97447B00028971 = {
 			isa = PBXGroup;
 			children = (
-				AEC196382B97469C00028971 /* GeometryEffect */,
+				AE67E2C92BA9BFF900056D7C /* SegmentationEffect */,
 				AE67E2BA2BA9BAE100056D7C /* SegmentationEffectExample */,
 				AEC196252B97447B00028971 /* Products */,
 				AEC1963B2B9746F200028971 /* Frameworks */,
@@ -113,7 +113,7 @@
 			name = SegmentationEffectExample;
 			packageProductDependencies = (
 				AE5CD8AD2BA232E20096E5B1 /* IdentifiedCollections */,
-				AE67E2C32BA9BB6300056D7C /* SegmentationEffect */,
+				AE67E2CA2BA9C03B00056D7C /* SegmentationEffect */,
 			);
 			productName = GeometryEffectExample;
 			productReference = AEC196242B97447B00028971 /* SegmentationEffectExample.app */;
@@ -418,7 +418,7 @@
 			package = AE5CD8AC2BA232E20096E5B1 /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
 			productName = IdentifiedCollections;
 		};
-		AE67E2C32BA9BB6300056D7C /* SegmentationEffect */ = {
+		AE67E2CA2BA9C03B00056D7C /* SegmentationEffect */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SegmentationEffect;
 		};

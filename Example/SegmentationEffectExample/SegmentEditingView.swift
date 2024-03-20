@@ -20,31 +20,31 @@ struct SegmentEditingView: View {
   
   var body: some View {
     let pointA = ZStack(alignment: .topLeading) {
-      Slider(value: $segment.speed, in: 0.001 ... 5)
-        .offset(y: segment.step.aOffset.height)
+      Slider(value: $segment.contentScale, in: 0.001 ... 5)
+        .offset(y: segment.bottomEdge.aOffset.height)
         .padding()
         .opacity(0.5)
       PointEditingView(
-        offset: segment.step.aOffset,
+        offset: segment.bottomEdge.aOffset,
         deleteAction: {
-          if let bOffset = segment.step.bOffset {
-            segment.step.mutableAOffset = bOffset
-            segment.step.mutableBOffset = nil
+          if let bOffset = segment.bottomEdge.bOffset {
+            segment.bottomEdge.mutableAOffset = bOffset
+            segment.bottomEdge.mutableBOffset = nil
           } else {
             deleteAction()
           }
         },
-        addAction: segment.step.bOffset.map { _ in nil } ?? {
-          segment.step.mutableBOffset = .init(
-            width: segment.step.aOffset.width + Constant.newPointBOffset,
-            height: segment.step.aOffset.height
+        addAction: segment.bottomEdge.bOffset.map { _ in nil } ?? {
+          segment.bottomEdge.mutableBOffset = .init(
+            width: segment.bottomEdge.aOffset.width + Constant.newPointBOffset,
+            height: segment.bottomEdge.aOffset.height
           )
         }
       )
       .gesture(
         DragGesture()
           .onChanged { value in
-            segment.step.mutableAOffset = .init(
+            segment.bottomEdge.mutableAOffset = .init(
               width: value.location.x,
               height: value.location.y
             )
@@ -52,21 +52,21 @@ struct SegmentEditingView: View {
       )
     }
     
-    switch segment.step {
+    switch segment.bottomEdge {
     case .node:
       pointA
     case .bar:
       ZStack(alignment: .topLeading) {
         pointA
-        if let bOffset = segment.step.bOffset {
+        if let bOffset = segment.bottomEdge.bOffset {
           PointEditingView(
             offset: bOffset,
-            deleteAction: { segment.step.mutableBOffset = nil }
+            deleteAction: { segment.bottomEdge.mutableBOffset = nil }
           )
           .gesture(
             DragGesture(minimumDistance: 0)
               .onChanged { value in
-                segment.step.mutableBOffset = .init(
+                segment.bottomEdge.mutableBOffset = .init(
                   width: value.location.x,
                   height: value.location.y
                 )
@@ -75,9 +75,9 @@ struct SegmentEditingView: View {
         }
       }
       .background {
-        if let bOffset = segment.step.bOffset {
+        if let bOffset = segment.bottomEdge.bOffset {
           Path { path in
-            path.move(to: .init(x: segment.step.aOffset.width, y: segment.step.aOffset.height))
+            path.move(to: .init(x: segment.bottomEdge.aOffset.width, y: segment.bottomEdge.aOffset.height))
             path.addLine(to: .init(x: bOffset.width, y: bOffset.height))
           }
           .stroke(.black.opacity(0.5))
@@ -87,7 +87,7 @@ struct SegmentEditingView: View {
   }
 }
 
-extension Step {
+extension SegmentationEffect.Edge {
   var aOffset: CGSize {
     switch self {
     case .node(let floats):
@@ -107,7 +107,7 @@ extension Step {
   }
 }
 
-extension Step {
+extension SegmentationEffect.Edge {
   var mutableAOffset: CGSize {
     get {
       aOffset

@@ -1,20 +1,21 @@
 import SwiftUI
 
 public struct Segment {
-  public var step: Step
-  public var speed: Float
+  public var bottomEdge: Edge
   
-  public init(step: Step, speed: Float) {
-    self.step = step
-    self.speed = speed
+  public var contentScale: Float
+  
+  public init(bottomEdge: Edge, contentScale: Float) {
+    self.bottomEdge = bottomEdge
+    self.contentScale = contentScale
   }
   
   var floatArray: [Float] {
-    step.floatArray + [speed]
+    bottomEdge.floatArray + [contentScale]
   }
 }
 
-public enum Step {
+public enum Edge {
   case node(SIMD2<Float>)
   case bar(SIMD2<Float>, SIMD2<Float>)
   

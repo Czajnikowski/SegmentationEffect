@@ -110,8 +110,14 @@ struct ContentView: View {
   }
   
   private func addNode(at point: CGPoint) {
-    let newSegment = Identified<UUID, Segment>(.init(step: .node(point.float2), speed: 1), id: .init())
-    segments.insert(newSegment, at: segments.firstIndex(where: { $0.step.aOffset.height < point.y}) ?? segments.count)
+    let newSegment = Identified<UUID, Segment>(
+      .init(bottomEdge: .node(point.float2), contentScale: 1),
+      id: .init()
+    )
+    segments.insert(
+      newSegment,
+      at: segments.firstIndex(where: { $0.bottomEdge.aOffset.height > point.y}) ?? segments.count
+    )
   }
   
   private func restart() {

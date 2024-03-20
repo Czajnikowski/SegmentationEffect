@@ -142,8 +142,8 @@ constant int countOfFloatsPerSegment = 5;
   position = transform(position, normalize);
   
   quadrilateral currentQuadrilateral = quadrilateral {
-    .a = float2(1, 0),
-    .b = 0,
+    .c = float2(0, 1),
+    .d = float2(1, 1),
   };
   float currentYScale = 1;
   float currentYOffset = 0;
@@ -155,24 +155,25 @@ constant int countOfFloatsPerSegment = 5;
     intexOfFirstFloatInSegment < countOfFloats;
     intexOfFirstFloatInSegment += countOfFloatsPerSegment
   ) {
-    float2 stepPointA = float2(
-      segmentFloats[intexOfFirstFloatInSegment + 2],
-      segmentFloats[intexOfFirstFloatInSegment + 3]
-    );
-    float2 stepPointB = float2(
+    float2 stepPointC = float2(
       segmentFloats[intexOfFirstFloatInSegment + 0],
       segmentFloats[intexOfFirstFloatInSegment + 1]
     );
+    float2 stepPointD = float2(
+      segmentFloats[intexOfFirstFloatInSegment + 2],
+      segmentFloats[intexOfFirstFloatInSegment + 3]
+    );
     currentYScale = segmentFloats[intexOfFirstFloatInSegment + 4];
+    currentYOffset -= currentYScale;
     
     currentQuadrilateral = quadrilateral {
-      .a = transform(stepPointA, normalize),
-      .b = transform(stepPointB, normalize),
-      .c = currentQuadrilateral.b,
-      .d = currentQuadrilateral.a,
+      .a = currentQuadrilateral.d,
+      .b = currentQuadrilateral.c,
+      .c = transform(stepPointC, normalize),
+      .d = transform(stepPointD, normalize),
     };
     
-    if(result.x + result.y == 0) {
+    if(result.x * result.y == 0) {
       result = segment(
         position,
         currentQuadrilateral,
@@ -180,22 +181,20 @@ constant int countOfFloatsPerSegment = 5;
         currentYScale
       );
     }
-    
-    currentYOffset += currentYScale;
   }
 
   currentQuadrilateral = {
-    .a = 1,
-    .b = float2(0, 1),
-    .c = currentQuadrilateral.b,
-    .d = currentQuadrilateral.a,
+    .a = currentQuadrilateral.d,
+    .b = currentQuadrilateral.c,
+    .c = 0,
+    .d = float2(1, 0),
   };
   
-  if(result.x + result.y == 0) {
+  if(result.x * result.y == 0) {
     result = segment(
       position,
       currentQuadrilateral,
-      currentYOffset,
+      currentYOffset - currentYScale,
       currentYScale
     );
   }

@@ -10,7 +10,7 @@ The shader uses bilinear interpolation to map pixel positions to the output via 
 
 Use as a Swift Package.
 
-Use a [`View.segmentationEffect`](https://github.com/Czajnikowski/SegmentationEffect/blob/main/Sources/SegmentationEffect/SegmentationEffect.swift#L5-L20) modifier.
+Use a [`View.segmentationEffect`](https://github.com/Czajnikowski/SegmentationEffect/blob/main/Sources/SegmentationEffect/SegmentationEffect.swift#L4-L19) modifier.
 
 ## Why?
 
